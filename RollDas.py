@@ -6,7 +6,7 @@ import os
 
 from collections import namedtuple
 
-from discord import client
+from discord
 
 from dice import roll, DiceBaseException
 from dice.elements import Roll, Integer
