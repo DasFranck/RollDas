@@ -1,6 +1,5 @@
 # Basics
 discord.py
-hjson
 
 # Roll plugin
 dice
