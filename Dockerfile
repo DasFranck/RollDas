@@ -5,9 +5,11 @@ FROM python:alpine3.8
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
-RUN apk -U add haveged && rc-service haveged start && rc-update add haveged
+RUN apk add --no-cache gcc musl-dev \
+ && pip install --no-cache-dir -r requirements.txt \
+ && apk del gcc
+RUN apk -U add openrc haveged
 
 COPY . .
-RUN rm -r ./docker
 
 ENTRYPOINT ["python", "./RollDas.py" ]
