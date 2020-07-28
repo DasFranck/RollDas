@@ -50,6 +50,7 @@ class RollDas(discord.Client):
         return cmd
 
     async def on_message(self, message):
+        print(cmd)
         cmd = self.get_meta(self, message)
 
         if (not cmd or not cmd.triggered or cmd.action not in ["roll"]):
@@ -81,6 +82,7 @@ class RollDas(discord.Client):
         self.logger.info("Sucessfully connected as %s (%s)" % (self.user.name,
                                                                self.user.id))
         self.logger.info("------------")
+        print("OK")
  
 
 
