@@ -4,25 +4,12 @@ import argparse
 import json
 import os
 
-from collections import namedtuple
-
 import discord
 
 from dice import roll, DiceBaseException
 from dice.elements import Roll, Integer
 
 rodas = discord.Client()
-
-Command = namedtuple("Command",
-                     ["content",
-                      "channel",
-                      "timestamp",
-                      "author",
-                      "msg",
-                      "triggered",
-                      "action",
-                      "args"])
-
 
 
 def get_meta(message):
@@ -72,23 +59,16 @@ async def on_message(message):
     return
 
 @rodas.event
-async def on_ready(self):
+async def on_ready():
     """Triggered when the bot is ready"""
-    self.logger.info("Sucessfully connected as %s (%s)" % (self.user.name,
-                                                            self.user.id))
-    self.logger.info("------------")
+    #logger.info(f"Sucessfully connected as {rodas.user.name}, ({rodas.user.id})")
+    print(f"Sucessfully connected as {rodas.user.name}, ({rodas.user.id})")
+    #logger.info("------------")
     print("OK")
 
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--token")
+args = parser.parse_args()
 
-# The Main.
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--token")
-    args = parser.parse_args()
-
-    rodas.run(args.token)
-
-
-if (__name__ == '__main__'):
-    main()
+rodas.run(args.token)
